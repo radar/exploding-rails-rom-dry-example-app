@@ -11,20 +11,22 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
-
   def create
-    validation = ProjectSchema.(project_params)
-    if validation.success?
-      repo.create(project_params)
-      flash[:notice] = "Project has been created."
-      redirect_to projects_path
-    else
-      @project = Project.new(project_params)
-      @errors = validation.errors
-      flash.now[:alert] = "Project could not be created."
-      render :new
+    transaction = CreateProject.new
+    transaction.(project_params) do |result|
+      result.success do |project|
+        flash[:notice] = "Project has been created."
+        redirect_to project
+      end
+
+      result.failure :validate do |errors|
+        @project = Project.new(project_params)
+        @errors = errors
+        flash[:alert] = "Project could not be created."
+        render :new
+      end
     end
-  end
+end
 
   private
 
