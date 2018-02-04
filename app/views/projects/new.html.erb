@@ -1,6 +1,8 @@
 <h2>New Project</h2>
 
 <%= form_with(model: @project, local: true) do |form| %>
+  <%= render "shared/error_messages", errors: @errors %>
+
   <p>
     <%= form.label :name %>
     <%= form.text_field :name, id: :project_name %>

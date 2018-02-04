@@ -1,0 +1,13 @@
+<% if errors.present? %>
+  <p>
+    There were errors that prevented this form from being saved:
+  </p>
+
+  <ul>
+    <% errors.map do |key, messages| %>
+      <% messages.each do |error| %>
+        <li><%= key.to_s.capitalize %> <%= error %></li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
