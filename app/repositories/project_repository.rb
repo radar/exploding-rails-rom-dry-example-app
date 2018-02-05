@@ -11,6 +11,14 @@ class ProjectRepository < ROM::Repository::Root
     projects.by_pk(id).one!
   end
 
+  def by_id_with_tickets(id)
+    projects.by_pk(id).combine(:tickets).one!
+  end
+
+  def by_id_with_tickets_and_users(id)
+    projects.by_pk(id).combine(tickets: :user).one!
+  end
+
   private
 
   def projects

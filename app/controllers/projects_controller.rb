@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = repo.by_id(params[:id])
+    @project = repo.by_id_with_tickets_and_users(params[:id])
   end
 
   def new
