@@ -5,7 +5,7 @@ class ProjectRelation < ROM::Relation[:sql]
 
   # define your methods here ie:
   #
-  # def all
-  #   select(:id, :name).order(:id)
-  # end
+  def all
+    select(:id, :name).order(:id)
+  end
 end

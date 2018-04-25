@@ -1,3 +1,9 @@
 <h2>Projects</h2>
 
 <%= link_to "New Project", new_projects_project_path, class: "btn btn-primary" %>
+
+<ul>
+  <% @projects.each do |project| %>
+    <li><%= link_to project.name, project %></li>
+  <% end %>
+</ul>
