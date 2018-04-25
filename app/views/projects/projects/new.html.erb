@@ -1,0 +1,10 @@
+<h2>New Project</h2>
+
+<%= form_with(model: @project, local: true, as: :project) do |form| %>
+  <p>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </p>
+
+  <%= form.submit class: "btn btn-primary" %>
+<% end %>
