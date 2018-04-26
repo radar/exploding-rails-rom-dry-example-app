@@ -1,10 +1,12 @@
 <h2>New Project</h2>
 
-<%= form_with(model: @project, local: true, as: :project) do |form| %>
+<%= form_with(model: @project, local: true) do |form| %>
+  <%= render "shared/error_messages", errors: @errors %>
+
   <p>
     <%= form.label :name %>
     <%= form.text_field :name %>
   </p>
 
-  <%= form.submit class: "btn btn-primary" %>
+  <%= form.submit %>
 <% end %>

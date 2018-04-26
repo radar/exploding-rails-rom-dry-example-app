@@ -8,6 +8,7 @@ gem 'rails', '~> 5.2.0'
 gem 'pg'
 gem 'rom-rails'
 gem 'rom-sql'
+gem "dry-validation", "~> 0.11.1"
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
