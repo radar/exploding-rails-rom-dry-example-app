@@ -13,16 +13,19 @@ module Projects
     end
 
     def create
-      validation = Projects::ProjectSchema.(project_params)
-      if validation.success?
-        repo.create(project_params)
-        flash[:notice] = "Project has been created."
-        redirect_to action: :index
-      else
-        @project = Projects::Project.new(project_params)
-        @errors = validation.errors
-        flash.now[:alert] = "Project could not be created."
-        render :new
+      transaction = Projects::Create.new
+      transaction.(project_params) do |result|
+        result.success do |project|
+          flash[:notice] = "Project has been created."
+          redirect_to project
+        end
+
+        result.failure :validate do |errors|
+          @project = Projects::Project.new(project_params)
+          @errors = errors
+          flash[:alert] = "Project could not be created."
+          render :new
+        end
       end
     end
 
