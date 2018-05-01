@@ -8,6 +8,7 @@ gem 'rails', '~> 5.2.0'
 gem 'pg'
 gem 'rom-rails'
 gem 'rom-sql'
+gem 'pry'
 gem "dry-validation", "~> 0.11.1"
 gem 'dry-transaction', '~> 0.11.1'
 gem "dry-container", "0.6.0"
